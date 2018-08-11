@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
-import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 
 class Map extends Component {
+
+	state = {
+		isOpen: false
+	}
+
+	markerOnClick = () => (
+		this.setState({
+			isOpen: true
+		})
+	)
 
    render() {
    const GoogleMapExample = withGoogleMap(props => (
@@ -13,7 +23,12 @@ class Map extends Component {
 				<Marker
 					key={place.index}
 					position={{ lat: place.position.lat, lng: place.position.lng }}
-				/>
+					onClick={this.markerOnClick}
+				>
+					{this.state.isOpen && <InfoWindow>
+						<h1>{place.name}</h1>
+					</InfoWindow>}
+				</Marker>
 			))}
       </GoogleMap>
    ));
