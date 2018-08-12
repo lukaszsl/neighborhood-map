@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Map from './components/Map.js'
+import Sidebar from './components/Sidebar.js'
 
 class App extends Component {
 
@@ -63,6 +64,8 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header>
+				<Sidebar
+					places={this.state.places} />
 				<Map
 					places={this.state.places}
 					isOpen={this.state.isOpen}
