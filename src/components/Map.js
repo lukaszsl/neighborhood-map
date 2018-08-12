@@ -3,16 +3,6 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 
 class Map extends Component {
 
-	state = {
-		isOpen: false
-	}
-
-	markerOnClick = () => (
-		this.setState({
-			isOpen: true
-		})
-	)
-
    render() {
    const GoogleMapExample = withGoogleMap(props => (
       <GoogleMap
@@ -21,12 +11,17 @@ class Map extends Component {
       >
 			{this.props.places.map((place) => (
 				<Marker
-					key={place.index}
+					key={place.id}
 					position={{ lat: place.position.lat, lng: place.position.lng }}
-					onClick={this.markerOnClick}
+					onClick={(event) => {this.props.onMarkerClick(place.id)}}
 				>
-					{this.state.isOpen && <InfoWindow>
-						<h1>{place.name}</h1>
+					{(this.props.selectedMarkerId === place.id) &&
+						<InfoWindow
+							>
+							<div>
+								<h1>{place.name}</h1>
+								<p>{place.address}</p>
+							</div>
 					</InfoWindow>}
 				</Marker>
 			))}
