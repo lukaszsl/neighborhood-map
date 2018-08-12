@@ -74,6 +74,12 @@ class App extends Component {
 		})
 	}
 
+	onCloseInfoWindow = () => {
+		this.setState({
+			selectedMarkerId: -1
+		})
+	}
+
 
   render() {
     return (
@@ -90,7 +96,8 @@ class App extends Component {
 					places={this.state.places}
 					isOpen={this.state.isOpen}
 					onMarkerClick={this.onMarkerClick}
-					selectedMarkerId={this.state.selectedMarkerId}/>
+					selectedMarkerId={this.state.selectedMarkerId}
+					onCloseInfoWindow={this.onCloseInfoWindow}/>
 					<footer className="App-footer">
 						<p>Made by Lukasz Sliczner</p>
 					</footer>

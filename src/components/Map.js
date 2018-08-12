@@ -17,6 +17,7 @@ class Map extends Component {
 				>
 					{(this.props.selectedMarkerId === place.id) &&
 						<InfoWindow
+							onCloseClick={this.props.onCloseInfoWindow}
 							>
 							<div>
 								<h1>{place.name}</h1>
