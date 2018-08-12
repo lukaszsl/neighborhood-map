@@ -9,6 +9,7 @@ class App extends Component {
 	state = {
 		isOpen: false,
 		selectedMarkerId: -1,
+		sidebarHidden: true,
 
 		places: [
 				{
@@ -63,14 +64,26 @@ class App extends Component {
 		this.onMarkerClick(itemId)
 	}
 
+	onHamburgerClick = (event) => {
+		let sidebar = document.querySelector(".Sidebar");
+		sidebar.classList.toggle("Sidebar-show");
+		event.stopPropagation();
+
+		this.setState({
+			sidebarHidden: !this.state.sidebarHidden
+		})
+	}
+
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+					<a href="#" className="App-hamburger" onClick={this.onHamburgerClick}></a>
         </header>
 				<Sidebar
+					className="Sidebar"
 					places={this.state.places}
 				 	onItemClick={this.onItemClick}/>
 				<Map

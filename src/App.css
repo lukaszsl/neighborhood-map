@@ -1,16 +1,34 @@
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+	animation: App-logo-spin infinite 20s linear;
+	height: 80px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 10vh;
-  color: white;
+	background-color: #222;
+	height: 10vh;
+	color: white;
+}
+
+.App-hamburger {
+	background: #414142;
+	color: #fff;
+	padding: 10px 15px;
+	float: left;
+	font-size: 1.4em;
+	text-decoration: none;
+	display: block;
+	position: absolute;
+	top: 15px;
+	left: 10px;
+	z-index: 666;
+}
+
+.App-hamburger:before {
+	content:'\2630';
 }
 
 .Sidebar {
@@ -21,8 +39,12 @@
 	top: 0;
 	left: 0;
 	z-index: 1;
-	/* transform: translate(-300px, 0);
-	transition: transform 0.3s ease; */
+	transform: translate(-300px, 0);
+	transition: transform 0.3s ease;
+}
+
+.Sidebar-show {
+	transform: translate(0, 0);
 }
 
 .Sidebar-input {
@@ -46,8 +68,8 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
 }
 
 .App-footer {
@@ -64,10 +86,6 @@
 }
 
 @media screen and (min-width: 600px){
-	nav {
-		position: relative;
-		transform: translate(0, 0);
-	}
 	body {
 		display: flex;
 		flex-flow: row nowrap;
@@ -75,5 +93,9 @@
 	main {
 		width: auto;
 		flex-grow: 1;
+	}
+
+	.App-hamburger {
+
 	}
 }
