@@ -62,13 +62,15 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
         </header>
 				<Map
 					places={this.state.places}
 					isOpen={this.state.isOpen}
 					onMarkerClick={this.onMarkerClick}
 					selectedMarkerId={this.state.selectedMarkerId}/>
+					<footer className="App-footer">
+						<p>Made by Lukasz Sliczner</p>
+					</footer>
       </div>
     );
   }
