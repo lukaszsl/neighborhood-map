@@ -57,6 +57,10 @@ class App extends Component {
 		})
 	}
 
+	onItemClick = (itemId) => {
+		this.onMarkerClick(itemId)
+	}
+
 
   render() {
     return (
@@ -65,7 +69,8 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
 				<Sidebar
-					places={this.state.places} />
+					places={this.state.places}
+				 	onItemClick={this.onItemClick}/>
 				<Map
 					places={this.state.places}
 					isOpen={this.state.isOpen}
