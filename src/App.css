@@ -21,15 +21,28 @@
 	top: 0;
 	left: 0;
 	z-index: 1;
+	/* transform: translate(-300px, 0);
+	transition: transform 0.3s ease; */
 }
 
 .Sidebar-input {
-	margin: 7%;
+	margin-top: 10vh;
 	width: 80%;
+}
+
+.Sidebar-locations-list {
+	padding: 0;
 }
 
 .Sidebar-places {
 	color: white;
+	list-style-type: none;
+	margin: 10px 0;
+	padding: 5px;
+}
+
+.Sidebar-places:hover {
+	cursor: pointer;
 }
 
 @keyframes App-logo-spin {
@@ -48,4 +61,19 @@
 
 .App-footer p {
 	margin: 0;
+}
+
+@media screen and (min-width: 600px){
+	nav {
+		position: relative;
+		transform: translate(0, 0);
+	}
+	body {
+		display: flex;
+		flex-flow: row nowrap;
+	}
+	main {
+		width: auto;
+		flex-grow: 1;
+	}
 }

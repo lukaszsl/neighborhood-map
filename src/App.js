@@ -49,6 +49,7 @@ class App extends Component {
 			]
 	}
 
+//Open InfoWindow after click on the marker
 	onMarkerClick = (markerId) => {
 		console.log('markerId', markerId)
 		this.setState({
@@ -57,6 +58,7 @@ class App extends Component {
 		})
 	}
 
+//Open InfoWindow after click on the item in the navbar
 	onItemClick = (itemId) => {
 		this.onMarkerClick(itemId)
 	}
