@@ -16,7 +16,7 @@ class Sidebar extends Component {
 							key={place.name}
 							className='Sidebar-places'
 							onClick={(event) => {this.props.onItemClick(place.id)}}
-						>{place.name}
+							>{place.name}
 						</li>
 					))}
 				</ul>
