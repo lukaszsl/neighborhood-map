@@ -9,7 +9,7 @@ class Map extends Component {
         defaultCenter = { { lat: 64.144740, lng: -21.941762 } }
         defaultZoom = { 14 }
       >
-			{this.props.places.map((place) => (
+			{this.props.filteredPlaces.map((place) => (
 				<Marker
 					key={place.id}
 					position={{ lat: place.position.lat, lng: place.position.lng }}
@@ -18,7 +18,7 @@ class Map extends Component {
 					{(this.props.selectedMarkerId === place.id) &&
 						<InfoWindow
 							onCloseClick={this.props.onCloseInfoWindow}
-							>
+						>
 							<div>
 								<h1>{place.name}</h1>
 								<p>{place.address}</p>

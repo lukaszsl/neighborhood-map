@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import escapeRegExp from 'escape-string-regexp';
 import logo from './logo.svg';
 import './App.css';
 import Map from './components/Map.js'
@@ -10,6 +11,8 @@ class App extends Component {
 		isOpen: false,
 		selectedMarkerId: -1,
 		sidebarHidden: true,
+		filteredPlaces: [],
+		query: '',
 
 		places: [
 				{
@@ -52,7 +55,6 @@ class App extends Component {
 
 //Open InfoWindow after click on the marker
 	onMarkerClick = (markerId) => {
-		console.log('markerId', markerId)
 		this.setState({
 			selectedMarkerId: markerId,
 			isOpen: true
@@ -80,6 +82,33 @@ class App extends Component {
 		})
 	}
 
+	updateQuery = (query) => {
+		this.setState({ query })
+	}
+
+	getSerchedPlace = (query) => {
+		let places = this.state.places
+		let filteredPlaces
+		const match = new RegExp(escapeRegExp(query.trim()), 'i')
+		if (places) {
+			const match = new RegExp(escapeRegExp(query.trim()), 'i')
+			filteredPlaces = places.filter((place) => match.test((place.name)))
+		} else {
+			filteredPlaces = places
+		}
+
+		this.setState({filteredPlaces})
+	}
+
+	handleInputChange = (event) => {
+		this.updateQuery(event.target.value)
+		if (event.target.value) this.getSerchedPlace(event.target.value)
+				else this.setState({filteredPlaces: this.state.places})
+	}
+
+	componentWillMount() {
+		this.setState({filteredPlaces: this.state.places})
+	}
 
   render() {
     return (
@@ -91,13 +120,17 @@ class App extends Component {
 				<Sidebar
 					className="Sidebar"
 					places={this.state.places}
-				 	onItemClick={this.onItemClick}/>
+				 	onItemClick={this.onItemClick}
+					filteredPlaces={this.state.filteredPlaces}
+					query={this.state.query}
+					handleInputChange={this.handleInputChange}/>
 				<Map
 					places={this.state.places}
 					isOpen={this.state.isOpen}
 					onMarkerClick={this.onMarkerClick}
 					selectedMarkerId={this.state.selectedMarkerId}
-					onCloseInfoWindow={this.onCloseInfoWindow}/>
+					onCloseInfoWindow={this.onCloseInfoWindow}
+					filteredPlaces={this.state.filteredPlaces}/>
 					<footer className="App-footer">
 						<p>Made by Lukasz Sliczner</p>
 					</footer>
