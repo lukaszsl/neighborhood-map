@@ -5,9 +5,8 @@ import '../App.css'
 class Sidebar extends Component {
 
 	state = {
-		searchedPlace: [],
 		query: '',
-		filteredPlaces: []
+		filteredPlaces: this.props.places
 	}
 
 	updateQuery = (query) => {
@@ -26,12 +25,8 @@ class Sidebar extends Component {
 			filteredPlaces = places
 		}
 
-		console.log('filteredPlaces: ', filteredPlaces)
-
 		this.setState({filteredPlaces})
-
 	}
-
 
 	render() {
 		return (
@@ -45,11 +40,11 @@ class Sidebar extends Component {
 					onChange={(event) => {
 						this.updateQuery(event.target.value)
 						if (event.target.value) this.getSerchedPlace(event.target.value)
-								else this.setState({searchedPlace: []})
+								else this.setState({filteredPlaces: this.props.places})
 					}}
 				/>
 				<ul id='location-list' className='Sidebar-locations-list'>
-					{this.props.places.map((place) => (
+					{this.state.filteredPlaces.map((place) => (
 						<li
 							key={place.name}
 							className='Sidebar-places'
