@@ -12,6 +12,9 @@ class Map extends Component {
 			{this.props.filteredPlaces.map((place) => (
 				<Marker
 					key={place.id}
+					icon={(this.props.selectedMarkerId === place.id) ?
+						({url: 'http://maps.google.com/mapfiles/ms/micons/red-pushpin.png'}) :
+						({url: 'http://maps.google.com/mapfiles/ms/micons/red-dot.png'})}
 					position={{ lat: place.position.lat, lng: place.position.lng }}
 					onClick={(event) => {this.props.onMarkerClick(place.id)}}
 				>

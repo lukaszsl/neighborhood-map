@@ -89,7 +89,7 @@ class App extends Component {
 	getSerchedPlace = (query) => {
 		let places = this.state.places
 		let filteredPlaces
-		const match = new RegExp(escapeRegExp(query.trim()), 'i')
+
 		if (places) {
 			const match = new RegExp(escapeRegExp(query.trim()), 'i')
 			filteredPlaces = places.filter((place) => match.test((place.name)))
@@ -130,7 +130,8 @@ class App extends Component {
 					onMarkerClick={this.onMarkerClick}
 					selectedMarkerId={this.state.selectedMarkerId}
 					onCloseInfoWindow={this.onCloseInfoWindow}
-					filteredPlaces={this.state.filteredPlaces}/>
+					filteredPlaces={this.state.filteredPlaces}
+					markerIcon={this.state.markerIcon}/>
 					<footer className="App-footer">
 						<p>Made by Lukasz Sliczner</p>
 					</footer>
