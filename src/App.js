@@ -13,6 +13,7 @@ class App extends Component {
 		sidebarHidden: true,
 		filteredPlaces: [],
 		query: '',
+		photo: '',
 
 		places: [
 				{
@@ -20,35 +21,40 @@ class App extends Component {
 					title: 'Harpa - A powerful concert hall and conference centre',
 					name: 'Harpa',
 					position: {lat: 64.150672, lng: -21.932942},
-					address: 'Austurbakki 2, 101 Reykjavík'
+					address: 'Austurbakki 2, 101 Reykjavík',
+					photoId: 'JGORE38_npE'
 				},
 				{
 					id: 1,
 					title: 'Hallgrímskirkja - The church is both a parish church and a national sanctuary in Iceland',
 					name: 'Hallgrímskirkja',
 					position: {lat: 64.142232, lng: -21.926547},
-					address: 'Hallgrímstorg 101, 101 Reykjavík'
+					address: 'Hallgrímstorg 101, 101 Reykjavík',
+					photoId: '6tbsNa_B_9k'
 				},
 				{
 					id: 2,
 					title: 'Ráðhús - The city hall of Reykjavik',
 					name: 'Ráðhús',
 					position: {lat: 64.146630, lng: -21.942340},
-					address: 'Tjarnargata 11, 101 Reykjavík'
+					address: 'Tjarnargata 11, 101 Reykjavík',
+					photoId: 'WvPQYDd-3Ow'
 				},
 				{
 					id: 3,
 					title: 'Þjóðminjasafnið - The National Museum of Iceland',
 					name: 'Þjóðminjasafnið',
 					position: {lat: 64.142194, lng: -21.948606},
-					address: 'Suðurgata 41, 101 Reykjavík'
+					address: 'Suðurgata 41, 101 Reykjavík',
+					photoId: '4RJ9brA_kaU'
 				},
 				{
 					id: 4,
 					title: 'Saga Museum - The History Museum with waxwork exhibits',
 					name: 'Saga Museum',
 					position: {lat: 64.153450, lng: -21.951524},
-					address: 'Grandagarður 2, 101 Reykjavík'
+					address: 'Grandagarður 2, 101 Reykjavík',
+					photoId: 'R6uybPo0Lv0'
 				}
 			]
 	}
@@ -110,17 +116,17 @@ class App extends Component {
 		this.setState({filteredPlaces: this.state.places})
 	}
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+	render() {
+		return (
+			<div className="App">
+				<header className="App-header">
+					<img src={logo} className="App-logo" alt="logo" />
 					<a href="#" className="App-hamburger" onClick={this.onHamburgerClick}></a>
-        </header>
+				</header>
 				<Sidebar
 					className="Sidebar"
 					places={this.state.places}
-				 	onItemClick={this.onItemClick}
+					onItemClick={this.onItemClick}
 					filteredPlaces={this.state.filteredPlaces}
 					query={this.state.query}
 					handleInputChange={this.handleInputChange}/>
@@ -131,13 +137,15 @@ class App extends Component {
 					selectedMarkerId={this.state.selectedMarkerId}
 					onCloseInfoWindow={this.onCloseInfoWindow}
 					filteredPlaces={this.state.filteredPlaces}
-					markerIcon={this.state.markerIcon}/>
+					markerIcon={this.state.markerIcon}
+					handlePhoto={this.handlePhoto}
+					photo={this.state.photo} />
 					<footer className="App-footer">
 						<p>Made by Lukasz Sliczner</p>
 					</footer>
-      </div>
-    );
-  }
+			</div>
+		);
+	}
 }
 
 export default App;
