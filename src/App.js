@@ -125,7 +125,10 @@ class App extends Component {
 			.then(response => response.json())
 			.then(jsonResponse => {
 				if (this.state.selectedMarkerId === place.id) {
-					this.setState({photoState: <img src={jsonResponse.urls.thumb} alt="Iceland" />})
+					let hrefPath = "https://unsplash.com/photos/" + jsonResponse.id;
+					let picture = (<div><img src={jsonResponse.urls.thumb} alt="Iceland" />
+													<p><a href={hrefPath}>Image</a> by {jsonResponse.user.name}</p></div>);
+					this.setState({photoState: picture})
 				}
 			})
 		})
