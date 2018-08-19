@@ -126,10 +126,14 @@ class App extends Component {
 			.then(jsonResponse => {
 				if (this.state.selectedMarkerId === place.id) {
 					let hrefPath = "https://unsplash.com/photos/" + jsonResponse.id;
-					let picture = (<div><img src={jsonResponse.urls.thumb} alt="Iceland" />
+					let picture = (<div><img src={jsonResponse.urls.thumb} alt={place.title} />
 													<p><a href={hrefPath}>Image</a> by {jsonResponse.user.name}</p></div>);
 					this.setState({photoState: picture})
 				}
+			})
+			.catch(error => {
+				console.log(error)
+				this.setState({photoState: <p>Unable to load the image :-(</p>})
 			})
 		})
 	}

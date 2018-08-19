@@ -18,8 +18,12 @@ class Sidebar extends Component {
 					{this.props.filteredPlaces.map((place) => (
 						<li
 							key={place.name}
+							tabIndex='0'
 							className='Sidebar-places'
 							onClick={(event) => {
+								this.props.onItemClick(place.id)
+								this.props.getUnsplash()}}
+							onKeyPress={(event) => {
 								this.props.onItemClick(place.id)
 								this.props.getUnsplash()}}
 							>{place.name}
