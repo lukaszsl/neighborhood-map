@@ -19,7 +19,9 @@ class Sidebar extends Component {
 						<li
 							key={place.name}
 							className='Sidebar-places'
-							onClick={(event) => {this.props.onItemClick(place.id)}}
+							onClick={(event) => {
+								this.props.onItemClick(place.id)
+								this.props.getUnsplash()}}
 							>{place.name}
 						</li>
 					))}

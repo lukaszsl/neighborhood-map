@@ -1,36 +1,7 @@
 import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
-import Unsplash from 'unsplash-js';
-
-
-// unsplash require
-// const Unsplash = require('unsplash-js').default;
-
 
 class Map extends Component {
-
-	state = {
-		photoState: ''
-	}
-
-
-	getUnsplash = (event) => {
-		const unsplash = new Unsplash({
-			applicationId: "8ab615de8707166d39eb47f72cc851c5b48c9b5136b19a04862e182577ec0448",
-			secret: "da108cb7c67d4354e36587460cca471f480db30a7067316ca3aafa48aaf8f429",
-			callbackUrl: "{CALLBACK_URL}"
-		})
-
-		this.props.places.map(place => {
-			unsplash.photos.getPhoto(place.photoId)
-			.then(response => response.json())
-			.then(jsonResponse => {
-				if (this.props.selectedMarkerId === place.id) {
-					this.setState({photoState: <img src={jsonResponse.urls.thumb} alt="Iceland" />})
-				}
-			})
-		})
-	}
 
 	 render() {
 	 const GoogleMapExample = withGoogleMap(props => (
@@ -46,7 +17,7 @@ class Map extends Component {
 						({url: 'http://maps.google.com/mapfiles/ms/micons/red-dot.png'})}
 					position={{ lat: place.position.lat, lng: place.position.lng }}
 					onClick={(event) => {this.props.onMarkerClick(place.id)
-					this.getUnsplash(event)}}
+					this.props.getUnsplash()}}
 				>
 					{(this.props.selectedMarkerId === place.id) &&
 						<InfoWindow
@@ -55,7 +26,7 @@ class Map extends Component {
 							<div>
 								<h1>{place.name}</h1>
 								<p>{place.address}</p>
-								<div>{this.state.photoState}</div>
+								<div>{this.props.photoState}</div>
 							</div>
 					</InfoWindow>}
 				</Marker>

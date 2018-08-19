@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import escapeRegExp from 'escape-string-regexp';
+import Unsplash from 'unsplash-js';
 import logo from './logo.svg';
 import './App.css';
 import Map from './components/Map.js'
@@ -13,7 +14,7 @@ class App extends Component {
 		sidebarHidden: true,
 		filteredPlaces: [],
 		query: '',
-		photo: '',
+		photoState: '',
 
 		places: [
 				{
@@ -112,6 +113,24 @@ class App extends Component {
 				else this.setState({filteredPlaces: this.state.places})
 	}
 
+	getUnsplash = () => {
+		const unsplash = new Unsplash({
+			applicationId: "8ab615de8707166d39eb47f72cc851c5b48c9b5136b19a04862e182577ec0448",
+			secret: "da108cb7c67d4354e36587460cca471f480db30a7067316ca3aafa48aaf8f429",
+			callbackUrl: "{CALLBACK_URL}"
+		})
+
+		this.state.places.map(place => {
+			unsplash.photos.getPhoto(place.photoId)
+			.then(response => response.json())
+			.then(jsonResponse => {
+				if (this.state.selectedMarkerId === place.id) {
+					this.setState({photoState: <img src={jsonResponse.urls.thumb} alt="Iceland" />})
+				}
+			})
+		})
+	}
+
 	componentWillMount() {
 		this.setState({filteredPlaces: this.state.places})
 	}
@@ -129,7 +148,9 @@ class App extends Component {
 					onItemClick={this.onItemClick}
 					filteredPlaces={this.state.filteredPlaces}
 					query={this.state.query}
-					handleInputChange={this.handleInputChange}/>
+					handleInputChange={this.handleInputChange}
+					photoState={this.state.photoState}
+					getUnsplash={this.getUnsplash} />
 				<Map
 					places={this.state.places}
 					isOpen={this.state.isOpen}
@@ -138,8 +159,8 @@ class App extends Component {
 					onCloseInfoWindow={this.onCloseInfoWindow}
 					filteredPlaces={this.state.filteredPlaces}
 					markerIcon={this.state.markerIcon}
-					handlePhoto={this.handlePhoto}
-					photo={this.state.photo} />
+					photoState={this.state.photoState}
+					getUnsplash={this.getUnsplash} />
 					<footer className="App-footer">
 						<p>Made by Lukasz Sliczner</p>
 					</footer>
