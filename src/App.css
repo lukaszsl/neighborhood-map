@@ -19,14 +19,14 @@
 .App-hamburger {
 	background: #414142;
 	color: #fff;
-	padding: 10px 15px;
+	padding: 8px 15px;
 	float: left;
 	font-size: 1.4em;
 	text-decoration: none;
 	display: block;
 	position: absolute;
-	top: 15px;
-	left: 10px;
+	top: 2%;
+	left: 4%;
 	z-index: 666;
 }
 
@@ -104,14 +104,16 @@
 		width: auto;
 		flex-grow: 1;
 	}
+
+	.App-hamburger {
+		font-size: 1.7em;
+	}
 }
 
 @media screen and (max-width: 599px){
 	.App-hamburger {
 		font-size: 1em;
 		padding: 5px 10px;
-		top: 2%;
-		left: 5%;
 	}
 
 	.App-logo {
