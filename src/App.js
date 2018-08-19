@@ -165,7 +165,9 @@ class App extends Component {
 					photoState={this.state.photoState}
 					getUnsplash={this.getUnsplash} />
 					<footer className="App-footer">
-						<p>Made by Lukasz Sliczner</p>
+						<p>Made by Lukasz Sliczner and powered by
+							<a href='https://www.google.com/maps/'> Google Maps </a> and
+							<a href='https://unsplash.com/'> Unsplash </a></p>
 					</footer>
 			</div>
 		);
