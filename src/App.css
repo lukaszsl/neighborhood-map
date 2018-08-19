@@ -8,6 +8,9 @@
 }
 
 .App-header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background-color: #222;
 	height: 10vh;
 	color: white;
@@ -101,8 +104,17 @@
 		width: auto;
 		flex-grow: 1;
 	}
+}
 
+@media screen and (max-width: 599px){
 	.App-hamburger {
+		font-size: 1em;
+		padding: 5px 10px;
+		top: 2%;
+		left: 5%;
+	}
 
+	.App-logo {
+		height: 60px;
 	}
 }
