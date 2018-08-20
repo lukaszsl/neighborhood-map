@@ -1,4 +1,4 @@
-# The Reykjavik neigborhood map
+# The Reykjavik neighborhood map
 
 This is the final project from Udacity Front-End Nanodegree, sponsored by Google.
 App shows interesting places to visit in the center of Reykjavik, Iceland.
