@@ -6,12 +6,12 @@ const redDot = 'http://maps.google.com/mapfiles/ms/micons/red-dot.png';
 
 class Map extends Component {
 
-	 render() {
-	 const GoogleMapExample = withGoogleMap(props => (
+	render() {
+	const GoogleMapExample = withGoogleMap(props => (
 			<GoogleMap
-				defaultCenter = { { lat: 64.144740, lng: -21.941762 } }
+				defaultCenter = {{ lat: 64.144740, lng: -21.941762 }}
 				defaultZoom = { 14 }
-				containerProps={ { tabIndex: 0 } }
+				containerProps={{ tabIndex: 0 }}
 			>
 			{this.props.filteredPlaces.map((place) => (
 				<Marker

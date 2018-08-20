@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import escapeRegExp from 'escape-string-regexp';
-import Unsplash from 'unsplash-js';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import escapeRegExp from 'escape-string-regexp'
+import Unsplash from 'unsplash-js'
+import logo from './logo.svg'
+import './App.css'
 import Map from './components/Map.js'
 import Sidebar from './components/Sidebar.js'
 
@@ -76,23 +76,24 @@ class App extends Component {
 	onHamburgerClick = (event) => {
 		let sidebar = document.querySelector(".Sidebar");
 		let input = document.querySelector(".Sidebar input");
-		let listElements = document.querySelectorAll(".Sidebar li");
+		let listElements = document.querySelectorAll(".Sidebar li")
 		sidebar.classList.toggle("Sidebar-show");
 
+// If sidebar is hidden lose focus
 		if(sidebar.classList.value === 'Sidebar Sidebar-show') {
-			sidebar.focus();
-			input.setAttribute('tabIndex','0');
-			listElements.forEach(element => element.setAttribute('tabIndex','0'));
+			sidebar.focus()
+			input.setAttribute('tabIndex','0')
+			listElements.forEach(element => element.setAttribute('tabIndex','0'))
 		} else {
-			sidebar.setAttribute('tabIndex','-1');;
-			input.setAttribute('tabIndex','-1');
-			listElements.forEach(element => element.setAttribute('tabIndex','-1'));
+			sidebar.setAttribute('tabIndex','-1')
+			input.setAttribute('tabIndex','-1')
+			listElements.forEach(element => element.setAttribute('tabIndex','-1'))
 		}
 
-		event.stopPropagation();
+		event.stopPropagation()
 
 		this.setState({
-			sidebarHidden: !this.state.sidebarHidden,
+			sidebarHidden: !this.state.sidebarHidden
 		})
 	}
 
@@ -126,6 +127,7 @@ class App extends Component {
 				else this.setState({filteredPlaces: this.state.places})
 	}
 
+// Get picture from Unsplash API
 	getUnsplash = () => {
 		const unsplash = new Unsplash({
 			applicationId: "8ab615de8707166d39eb47f72cc851c5b48c9b5136b19a04862e182577ec0448",
@@ -138,9 +140,9 @@ class App extends Component {
 			.then(response => response.json())
 			.then(jsonResponse => {
 				if (this.state.selectedMarkerId === place.id) {
-					let hrefPath = "https://unsplash.com/photos/" + jsonResponse.id;
+					let hrefPath = "https://unsplash.com/photos/" + jsonResponse.id
 					let picture = (<div><img src={jsonResponse.urls.thumb} alt={place.title} />
-													<p><a href={hrefPath}>Image</a> by {jsonResponse.user.name}</p></div>);
+													<p><a href={hrefPath}>Image</a> by {jsonResponse.user.name}</p></div>)
 					this.setState({photoState: picture})
 				}
 			})
