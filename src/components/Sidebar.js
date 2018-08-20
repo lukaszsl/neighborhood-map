@@ -5,8 +5,9 @@ class Sidebar extends Component {
 
 	render() {
 		return (
-			<div className='Sidebar'>
+			<div className='Sidebar' tabIndex='-1'>
 				<input
+					tabIndex='-1'
 					className='Sidebar-input'
 					value={this.props.query}
 					role='search'
@@ -18,7 +19,7 @@ class Sidebar extends Component {
 					{this.props.filteredPlaces.map((place) => (
 						<li
 							key={place.name}
-							tabIndex='0'
+							tabIndex='-1'
 							className='Sidebar-places'
 							onClick={(event) => {
 								this.props.onItemClick(place.id)

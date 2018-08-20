@@ -75,11 +75,24 @@ class App extends Component {
 
 	onHamburgerClick = (event) => {
 		let sidebar = document.querySelector(".Sidebar");
+		let input = document.querySelector(".Sidebar input");
+		let listElements = document.querySelectorAll(".Sidebar li");
 		sidebar.classList.toggle("Sidebar-show");
+
+		if(sidebar.classList.value === 'Sidebar Sidebar-show') {
+			sidebar.focus();
+			input.setAttribute('tabIndex','0');
+			listElements.forEach(element => element.setAttribute('tabIndex','0'));
+		} else {
+			sidebar.setAttribute('tabIndex','-1');;
+			input.setAttribute('tabIndex','-1');
+			listElements.forEach(element => element.setAttribute('tabIndex','-1'));
+		}
+
 		event.stopPropagation();
 
 		this.setState({
-			sidebarHidden: !this.state.sidebarHidden
+			sidebarHidden: !this.state.sidebarHidden,
 		})
 	}
 
