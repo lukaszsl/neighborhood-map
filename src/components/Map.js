@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
+import { compose, withProps } from "recompose";
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 
 const redPushpin = 'http://maps.google.com/mapfiles/ms/micons/red-pushpin.png';
 const redDot = 'http://maps.google.com/mapfiles/ms/micons/red-dot.png';
@@ -7,7 +8,16 @@ const redDot = 'http://maps.google.com/mapfiles/ms/micons/red-dot.png';
 class Map extends Component {
 
 	render() {
-	const GoogleMapExample = withGoogleMap(props => (
+		const GoogleMapExample = compose(
+	  withProps({
+	    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBBr0wyroa-2vbN5Xrm3wicZ0HO5aMIdfY&v=3.exp&libraries=geometry,drawing,places",
+	    loadingElement: <div style={{ height: `100%` }} />,
+	    containerElement:  <div style={{ height: `85vh`, width: '100vw' }} />,
+	    mapElement: <div style={{ height: `100%` }} />,
+	  }),
+	  withScriptjs,
+	  withGoogleMap
+	)((props) =>
 			<GoogleMap
 				defaultCenter = {{ lat: 64.144740, lng: -21.941762 }}
 				defaultZoom = { 14 }
@@ -36,13 +46,10 @@ class Map extends Component {
 				</Marker>
 			))}
 			</GoogleMap>
-	 ));
+	 )
 	 return(
 			<div tabIndex='0'>
-				<GoogleMapExample
-					containerElement={ <div style={{ height: `85vh`, width: '100vw' }} /> }
-					mapElement={ <div style={{ height: `100%` }} /> }
-				/>
+				<GoogleMapExample />
 			</div>
 	 );
 	 }
