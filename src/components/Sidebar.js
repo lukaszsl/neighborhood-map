@@ -5,7 +5,7 @@ class Sidebar extends Component {
 
 	render() {
 		return (
-			<div className='Sidebar' tabIndex='-1'>
+			<div className='Sidebar' tabIndex='-1' role='navigation'>
 				<input
 					tabIndex='-1'
 					className='Sidebar-input'

@@ -48,7 +48,7 @@ class Map extends Component {
 			</GoogleMap>
 	 )
 	 return(
-			<div id='mapBox' tabIndex='0'>
+			<div id='mapBox' tabIndex='0' role='application'>
 				<GoogleMapExample />
 			</div>
 	 );
